@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Editable Div</title>
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+
+</head>
+<body>
+
+
+  <div class="container editable-space-container">
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="editable-space">Value 1</div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="editable-space"> Value 2</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <a href="#" class="btn btn-primary edit-nodes">Edit</a>
+    </div>
+
+  </div>
+
+
+  <script>
+
+    (function(){
+
+        $(document).on('click','.edit-nodes',function(e){
+
+          var button = $(this);
+          var nodes = button.closest('.editable-space-container').find('.editable-space');
+
+          $.each(nodes,function(){
+            var text_field = $(this);
+            var actual_value = text_field.html();
+            text_field.html("<input type='text' data-past-value='"+actual_value+"' placeholder='"+actual_value+"'>");
+          });
+
+          button.html('Save');
+          button.removeClass('edit-nodes');
+          button.addClass('save-nodes');
+
+        });
+
+
+
+
+        $(document).on('click','.save-nodes',function(e){
+
+          var button = $(this);
+          var nodes = button.closest('.editable-space-container').find('.editable-space input');
+
+          $.each(nodes,function(){
+            var text_field = $(this);
+            var actual_value = text_field.val();
+            text_field.closest('div').html(actual_value);
+          });
+
+          button.html('Edit');
+          button.addClass('edit-nodes');
+          button.removeClass('save-nodes');
+
+
+        });
+
+
+    })();
+
+  </script>
+
+
+</body>
+</html>

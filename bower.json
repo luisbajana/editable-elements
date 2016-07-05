@@ -1,0 +1,19 @@
+{
+  "name": "Editable Div",
+  "authors": [
+    "Luis Bajana"
+  ],
+  "description": "Transform divs into textfields to change their values",
+  "main": "index.html",
+  "keywords": [
+    "editable",
+    "div",
+    "jquery",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
