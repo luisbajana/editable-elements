@@ -44,7 +44,7 @@
           $.each(nodes,function(){
             var text_field = $(this);
             var actual_value = text_field.html();
-            text_field.html("<input type='text' data-past-value='"+actual_value+"' placeholder='"+actual_value+"'>");
+            text_field.html("<input type='text' data-last-value='"+actual_value+"' placeholder='"+actual_value+"'>");
           });
 
           button.html('Save');
@@ -63,7 +63,13 @@
 
           $.each(nodes,function(){
             var text_field = $(this);
-            var actual_value = text_field.val();
+            var actual_value;
+
+            if( text_field.val() === "" ){
+              actual_value = text_field.data("lastValue");
+            }else{
+              actual_value = text_field.val();
+            }
             text_field.closest('div').html(actual_value);
           });
 
