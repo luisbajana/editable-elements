@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Editable Div</title>
+  <title>Editable Elements</title>
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
 
 </head>
 <body>
@@ -34,9 +33,18 @@
 
   <script>
 
+
     (function(){
 
+        /*
+          Edit button listener
+          1.- Get all elements of its current editable space container, nodes.
+          2.- Iterate through all nodes and place an input with its current value
+          3.- Changes the button's state, label, edit class for the listener, and add the class save nodes (another listener)
+        */
         $(document).on('click','.edit-nodes',function(e){
+
+          e.preventDefault();
 
           var button = $(this);
           var nodes = button.closest('.editable-space-container').find('.editable-space');
@@ -55,8 +63,15 @@
 
 
 
-
+        /*
+          Save button listener
+          1.- Get all elements of its current editable space container, nodes.
+          2.- Iterate through all nodes and check if there's a change in the current value, then it places the previous object with the new or the current value.
+          3.- Changes the button's state, label, saves class for the listener, and add the class edit nodes (another listener)
+        */
         $(document).on('click','.save-nodes',function(e){
+
+          e.preventDefault();
 
           var button = $(this);
           var nodes = button.closest('.editable-space-container').find('.editable-space input');
@@ -77,11 +92,10 @@
           button.addClass('edit-nodes');
           button.removeClass('save-nodes');
 
-
         });
 
-
     })();
+
 
   </script>
 
